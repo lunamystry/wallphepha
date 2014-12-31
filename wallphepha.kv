@@ -1,0 +1,30 @@
+#: kivy 1.8.0
+
+Wallpapers:
+
+<Wallpapers>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '48dp'
+            padding: '5dp'
+            canvas:
+                Color:
+                    rgb: .3, .3, .3
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Image:
+                source: 'data/logo.png'
+                mipmap: True
+                size_hint_x: None
+                width: self.height
+
+            Label:
+                text: 'Wallpapers'
+                font_size: '16sp'
+
+        ListView:

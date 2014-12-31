@@ -1,6 +1,15 @@
 #: kivy 1.8.0
+#:import ListAdapter kivy.adapters.listadapter.ListAdapter
+#:import Factory kivy.factory.Factory
 
 Wallpapers:
+
+<Screen>:
+    canvas:
+        Color:
+            rgb: .2, .2, .2
+        Rectangle:
+            size: self.size
 
 <Wallpapers>:
     BoxLayout:
@@ -28,3 +37,4 @@ Wallpapers:
                 font_size: '16sp'
 
         ListView:
+            adapter: ListAdapter(data=root.data, cls=Factory.PhephaListItem, args_converter=root.args_converter)

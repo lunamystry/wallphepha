@@ -15,6 +15,7 @@ class PhephaListItem(BoxLayout, Label):
 
 class Wallpapers(Screen):
     data = ListProperty()
+    directory = StringProperty("/home/leny/Images/wallpapers")
 
     def args_converter(self, row_index, filename):
         result = {
@@ -27,6 +28,7 @@ class Wallpapers(Screen):
 class WallphephaApp(App):
     def build(self):
         self.wallpapers = Wallpapers(name="wallpapers")
+        self.wallpapers.data = ["filename", "second file"]
 
         self.transition = SlideTransition(duration=.35)
         root = ScreenManager(transition=self.transition)

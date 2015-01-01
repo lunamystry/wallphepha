@@ -25,13 +25,16 @@
                     pos: self.pos
                     size: self.size
             Button:
-                text: '<'
+                text: 'back'
                 size_hint_x: None
-                width: self.height
                 on_release: app.view_phepha_list()
             Label:
                 text: root.filename
                 font_size: '16sp'
+            Button:
+                text: 'set'
+                size_hint_x: None
+                on_release: app.set_wallpaper(root.filename)
         AsyncImage:
             source: root.image_url
 
@@ -54,9 +57,10 @@
         Label:
             text: root.filename
         Button:
-            text: '>'
-            size_hint_x: None
-            width: self.height
+            text: 'view'
+            size_hint: None, None
+            pos_hint: {'center_y': 0.5}
+            height: '30dp'
             on_release: app.view_phepha(root.image_url)
 
 

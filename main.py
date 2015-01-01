@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.properties import ListProperty
-from kivy.uix.listview import ListItemButton
+from kivy.uix.label import Label
 
 import subprocess
 import fileinput
@@ -15,7 +15,12 @@ import os
 import re
 
 
-class PhephaListItem(BoxLayout, ListItemButton):
+class PhephaView(Screen):
+    filename = StringProperty()
+    image_url = StringProperty()
+
+
+class PhephaListItem(BoxLayout, Label):
     filename = StringProperty()
     image_url = StringProperty()
 
@@ -73,6 +78,22 @@ class WallphephaApp(App):
                     sys.stdout.write(line)
                 else:
                     sys.stdout.write(line)
+
+    def view_phepha(self, filename):
+        name = 'phepha{}'.format(filename)
+
+        if self.root.has_screen(name):
+            self.root.remove_widget(self.root.get_screen(name))
+
+        view = PhephaView(
+            name=name,
+            filename=filename,
+            image_url=filename
+            )
+
+        self.root.add_widget(view)
+        self.transition.direction = 'left'
+        self.root.current = view.name
 
 
 if __name__ == "__main__":

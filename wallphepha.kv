@@ -9,21 +9,15 @@
         Rectangle:
             size: self.size
 
-<EditableLabel>:
-    size_hint: 1, None
-    height: "30dp"
-    spacing: 0
 
 <PhephaListItem>:
-    height: '48sp'
-    size_hint_y: None
-
+    size_hint: 1, None
     canvas:
         Color:
-            rgb: .3, .3, .3
+            rgba: 0, 0, 0, 0.7
         Rectangle:
             pos: self.pos
-            size: self.width, 1
+            size: self.width, 2
 
     AsyncImage:
         size_hint: 0.3, None
@@ -31,6 +25,7 @@
         source: root.image_url
     Label:
         text: root.filename
+
 
 <Wallpapers>:
     BoxLayout:
@@ -42,7 +37,7 @@
             padding: '5dp'
             canvas:
                 Color:
-                    rgb: .3, .3, .3
+                    rgba: .6, 0, .7, self.opacity - 0.2
                 Rectangle:
                     pos: self.pos
                     size: self.size

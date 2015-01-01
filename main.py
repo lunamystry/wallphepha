@@ -95,6 +95,10 @@ class WallphephaApp(App):
         self.transition.direction = 'left'
         self.root.current = view.name
 
+    def view_phepha_list(self):
+        self.transition.direction = 'right'
+        self.root.current = 'wallpapers'
+
 
 if __name__ == "__main__":
     WallphephaApp().run()

@@ -10,8 +10,30 @@
             size: self.size
 
 
+<PhephaView>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '40dp'
+            padding: '5dp'
+            canvas:
+                Color:
+                    rgb: .1, .1, .2
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: root.filename
+                font_size: '16sp'
+        AsyncImage:
+            source: root.image_url
+
+
 <PhephaListItem>:
     size_hint: 1, None
+    on_release: app.set_wallpaper(root.image_url)
     canvas:
         Color:
             rgba: 0, 0, 0, 0.7
@@ -34,7 +56,6 @@
             orientation: 'horizontal'
             size_hint_y: None
             height: '48dp'
-            padding: '5dp'
             canvas:
                 Color:
                     rgba: .6, 0, .7, self.opacity - 0.2

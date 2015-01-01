@@ -3,10 +3,10 @@ kivy.require('1.8.0')
 
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.properties import ListProperty
+from kivy.uix.listview import ListItemButton
 
 import subprocess
 import fileinput
@@ -15,7 +15,7 @@ import os
 import re
 
 
-class PhephaListItem(BoxLayout, Label):
+class PhephaListItem(BoxLayout, ListItemButton):
     filename = StringProperty()
     image_url = StringProperty()
 

@@ -3,16 +3,51 @@ kivy.require('1.8.0')
 
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
+from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.properties import ListProperty
+from kivy.properties import ObjectProperty
 from kivy.uix.listview import ListItemButton
+from kivy.uix.label import Label
+from kivy.uix.button import Button
 
 import subprocess
 import fileinput
 import sys
 import os
 import re
+
+
+class EditableLabel(BoxLayout, Label):
+    field = ObjectProperty()
+
+    def __init__(self, **kwargs):
+        super(EditableLabel, self).__init__(**kwargs)
+        self.show(None)
+
+    def edit(self, label):
+        if label is not None:
+            self.remove_widget(self.field)
+        self.field = TextInput(text=self.text,
+                               on_text_validate=self.show,
+                               focus=True,
+                               multiline=False)
+        self.field.bind(focus=self.on_focus)
+        self.add_widget(self.field)
+
+    def on_focus(self, instance, value):
+        if not value:
+            self.show(instance)
+
+    def show(self, textinput):
+        if textinput is not None:
+            self.remove_widget(self.field)
+            self.text = textinput.text
+        self.field = Button(text=self.text,
+                            background_color=[1, 0, 0, 0],
+                            on_press=self.edit)
+        self.add_widget(self.field)
 
 
 class PhephaView(Screen):
@@ -42,7 +77,6 @@ class WallphephaApp(App):
     def build(self):
         self.wallpapers = Wallpapers(name="wallpapers")
         self.phepha_dir = "/home/leny/Images/wallpapers"
-        self.load_wallpapers(self.phepha_dir)
 
         self.transition = SlideTransition(duration=.35)
         root = ScreenManager(transition=self.transition)
@@ -100,6 +134,11 @@ class WallphephaApp(App):
     def view_phepha_list(self):
         self.transition.direction = 'right'
         self.root.current = 'wallpapers'
+
+    def rename(self, old_path, new_path):
+        if os.path.isfile(old_path):
+            os.rename(old_path, new_path)
+            self.load_wallpapers(self.phepha_dir)
 
 
 if __name__ == "__main__":

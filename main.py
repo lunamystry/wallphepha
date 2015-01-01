@@ -55,7 +55,6 @@ class WallphephaApp(App):
         return root
 
     def set_wallpaper(self, filepath):
-        print("set wallpaper: "+filepath)
         command = "feh --bg-scale " + filepath
         process = subprocess.Popen(command,
                                    shell=True,

@@ -85,5 +85,17 @@
                 text: 'Wallpapers'
                 font_size: '16sp'
 
+        BoxLayout:
+            size_hint: 1, None
+            height: "30dp"
+            spacing: '5dp'
+            TextInput:
+                size_hint: 0.8, 1
+                pos_hint: {"center_x": .5}
+                on_text: app.load_wallpapers(self.text)
+                on_text_validate: app.load_wallpapers(self.text)
+                multiline: False
+                hint_text: "wallpaper directory..."
+                text: app.phepha_dir
         ListView:
             adapter: ListAdapter(data=root.data, cls=Factory.PhephaListItem, args_converter=root.args_converter)

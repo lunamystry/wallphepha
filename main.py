@@ -37,10 +37,12 @@ class Wallpapers(Screen):
 
 
 class WallphephaApp(App):
+    phepha_dir = StringProperty()
+
     def build(self):
         self.wallpapers = Wallpapers(name="wallpapers")
-        phepha_dir = "/home/leny/Images/wallpapers"
-        self.load_wallpapers(phepha_dir)
+        self.phepha_dir = "/home/leny/Images/wallpapers"
+        self.load_wallpapers(self.phepha_dir)
 
         self.transition = SlideTransition(duration=.35)
         root = ScreenManager(transition=self.transition)

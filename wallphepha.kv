@@ -41,6 +41,9 @@
 
 <PhephaListItem>:
     size_hint: 1, None
+    on_release: app.view_phepha(root.image_url)
+    selected_color: .1, .1, .1, 1
+    deselected_color: .2, .2, .2, 1
     canvas:
         Color:
             rgba: 0, 0, 0, 0.7
@@ -56,12 +59,6 @@
         orientation: 'horizontal'
         Label:
             text: root.filename
-        Button:
-            text: 'view'
-            size_hint: None, None
-            pos_hint: {'center_y': 0.5}
-            height: '30dp'
-            on_release: app.view_phepha(root.image_url)
 
 
 <Wallpapers>:
@@ -73,7 +70,7 @@
             height: '48dp'
             canvas:
                 Color:
-                    rgba: .6, 0, .7, self.opacity - 0.2
+                    rgba: .6, 0, .7, 0.8
                 Rectangle:
                     pos: self.pos
                     size: self.size

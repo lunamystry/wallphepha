@@ -25,15 +25,12 @@
             pos: self.pos
             size: self.width, 1
 
-    Image:
+    AsyncImage:
         size_hint: 0.3, None
         height: root.height
         source: root.image_url
-    BoxLayout:
-        padding: '5dp'
-        Label:
-            text: root.filename
-
+    Label:
+        text: root.filename
 
 <Wallpapers>:
     BoxLayout:
